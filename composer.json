@@ -16,5 +16,10 @@
     },
     "autoload": {
         "psr-0": { "ae35": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
