@@ -16,28 +16,28 @@ class ComposerAutoloaderServiceProvider implements ServiceProviderInterface
 		$this->loader = $loader;
 	}
 	
-    public function register(Application $app)
-    {
+	public function register(Application $app)
+	{
 		$self = $this;
 		
 		$app['autoloader'] = function() use ($self) {
 			return $self;
 		};
-    }
+	}
 
-    public function boot(Application $app)
-    {
-    }
-    
-    /**
+	public function boot(Application $app)
+	{
+	}
+	
+	/**
 	* Registers a namespace.
 	*
 	* @param string $namespace The namespace
 	* @param array|string $paths The location(s) of the namespace
 	*
 	*/
-    public function registerNamespace($namespace, $paths) 
-    {
+	public function registerNamespace($namespace, $paths) 
+	{
 		$this->loader->add($namespace, $paths);
 	}
 	
@@ -45,13 +45,13 @@ class ComposerAutoloaderServiceProvider implements ServiceProviderInterface
 	 * Overloading to pass calls to the ClassLoader
 	 */
 	public function __call($name, $arguments)
-    {
+	{
 		if (!method_exists($this->loader, $name)) {
 			throw new BadMethodCallException();
 		}
 		
 		return call_user_func_array(array($this->loader, $name), $arguments);
-    }
+	}
 
 	
 }
